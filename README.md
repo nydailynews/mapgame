@@ -11,7 +11,7 @@ Make a "Where Is X (Country / City / Point of Interest) On The Map?" game.
 1. Upload the markup to production ([example](http://extras.denverpost.com/app/mapgame/games/moscow.html)), then iframe it into an article ([example](http://www.denverpost.com/2017/01/12/map-game-russia-moscow/)).
 
 ## How to get started with a dev environment
-1. Check out this repo. `git clone git@github.com:denverpost/mapgame.git`
+1. Check out this repo. `git clone git@github.com:nydailynews/where-in-the-world.git`
 1. Symlink the repo's www directory into an active webserver on your computer.
 1. To start on testing the backend, take a look at the sql in www/admin/tables.sql
 
