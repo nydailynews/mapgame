@@ -9,12 +9,11 @@ Handle form requests such as
 
 // Because handling form requests is easier with PHP.
 // Return the AJAX request
-
 if ( strpos($_SERVER['HTTP_REFERER'], 'localhost') === FALSE && strpos($_SERVER['HTTP_REFERER'], 'denverpost.com') === FALSE ) die();
 
 function error_out($slug)
 {
-    $error_url = 'http://www.denverpost.com/ci_15208788?source=err_';
+    $error_url = 'http://interactive.nydailynews.com/error';
     header('Location: ' . $error_url . $slug);
     die();
 }
@@ -35,8 +34,6 @@ if ( isset($_SERVER['HTTP_ORIGIN']) )
 }
 
 // Make sure there are POST fields for the submit_x and submit_y values
-//if ( $is_ajax === FALSE && intval($_GET['x']) == 0 && intval($_GET['y']) == 0 ) error_out('noxy');
-//if ( strpos('denverpost', $_SERVER["HTTP_REFERER"]) === FALSE ) error_out('referer');
 if ( $distance < 0 ) header('Location: ' . $_SERVER['HTTP_REFERER'] . '?source=err_novote');
 
 
@@ -55,7 +52,7 @@ if ( $db->connect_errno )
 }
 
 // Get the game id
-$sql = 'SELECT id, guesses, guess_average, wrong_guess_average, correct FROM games WHERE slug = "' . $slug . '" LIMIT 1';
+$sql = 'SELECT id, guesses, guess_average, wrong_guess_average, correct FROM mapgame_games WHERE slug = "' . $slug . '" LIMIT 1';
 $result = $db->query($sql);
 $game = $result->fetch_object();
 $games_id = intval($game->id);
@@ -63,14 +60,14 @@ $correct = intval($game->correct);
 if ( $games_id == 0 ) die('Bad ID');
 
 // See how many people they did worse than
-$sql = 'SELECT COUNT(*) AS count FROM guesses WHERE games_id = ' . $games_id . ' AND guess < ' . $distance;
+$sql = 'SELECT COUNT(*) AS count FROM mapgame_guesses WHERE games_id = ' . $games_id . ' AND guess < ' . $distance;
 $result = $db->query($sql);
 $obj  = $result->fetch_object();
 $worse_than = intval($obj->count);
 
 // Insert the guess
 if ( $distance != -1 ):
-    $sql = 'INSERT INTO guesses 
+    $sql = 'INSERT INTO mapgame_guesses 
             (games_id, guess, lat, lon, ip) VALUES 
             (' . $games_id . ', ' . $distance . ', ' . floatval($_GET['lat']) . ',
             ' . floatval($_GET['lon']) . ', 
@@ -90,7 +87,7 @@ if ( $distance > 0 ):
     $new_wrong_average =  floatval(( ( ( $wrong - 1 ) * $game->wrong_guess_average ) + $distance ) / $wrong );
 endif;
 
-$sql = 'UPDATE games SET correct = ' . $correct . ',
+$sql = 'UPDATE mapgame_games SET correct = ' . $correct . ',
     guesses = ' . $new_guesses . ',
     guess_average = ' . $new_average . ',
     wrong_guess_average = ' . $new_wrong_average . '
