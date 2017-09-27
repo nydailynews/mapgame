@@ -11,7 +11,7 @@ while [ "$1" != "" ]; do
     esac
     shift
 done
-SQL="SELECT CONCAT(guess, ',', lat, ',', lon) FROM guesses WHERE games_id = $ID;"
+SQL="SELECT CONCAT(guess, ',', lat, ',', lon) FROM mapgame_guesses WHERE games_id = $ID;"
 echo $SQL > results.sql
 mysql mapgame -u root -p < results.sql >> results.tmp
 sed '2d' results.tmp >> results.csv

@@ -1,0 +1,296 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <title>Denver Map Game - The Denver Post</title>
+
+    <link rel="canonical" href="http://extras.denverpost.com/app/mapgame/games/denver.html" />
+    <link rel="shortcut icon" href="http://extras.mnginteractive.com/live/media/favIcon/dpo/favicon.ico" type="image/x-icon" />
+
+    <meta name="distribution" content="global" />
+    <meta name="robots" content="index" />
+    <meta name="title" content="Denver Map Game" />
+    <meta name="language" content="en, sv" />
+    <meta name="Copyright" content="Copyright &copy; The Denver Post." />
+
+    <meta name="description" content="Given a map of Colorado, how close can you guess Denver's location?">
+    <meta name="news_keywords" content="Colorado, Denver, Cartography, Game">
+
+    <meta name="twitter:card" value="summary" />
+    <meta name="twitter:url" value="http://extras.denverpost.com/app/mapgame/games/denver.html" />
+    <meta name="twitter:title" value="Denver Map Game" />
+    <meta name="twitter:description" value="Given a map of Colorado, how close can you guess Denver's location?" />
+    <meta name="twitter:image" value="http://extras.denverpost.com/app/mapgame/promos/map-colorado.png" />
+    <meta name="twitter:site" value="@denverpost" />
+    <meta name="twitter:domain" value="denverpost.com" />
+    <meta name="twitter:creator" value="@joemurph">
+    <meta name="twitter:app:name:iphone" value="Denver Post">
+    <meta name="twitter:app:name:ipad" value="Denver Post">
+    <meta name="twitter:app:name:googleplay" value="The Denver Post">
+    <meta name="twitter:app:id:iphone" value="id375264133">
+    <meta name="twitter:app:id:ipad" value="id409389010">
+    <meta name="twitter:app:id:googleplay" value="com.ap.denverpost" />
+
+    <meta property="fb:app_id" content="105517551922"/>
+    <meta property="og:title" content="Denver Map Game" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="http://extras.denverpost.com/app/mapgame/games/denver.html" />
+    <meta property="og:image" content="http://extras.denverpost.com/app/mapgame/promos/map-colorado.png" />
+    <meta property="og:site_name" content="The Denver Post" />
+    <meta property="og:description" content="Given a map of Colorado, how close can you guess Denver's location?" />
+    <meta property="article:publisher" content="https://www.facebook.com/denverpost" />
+
+    <meta name="google-site-verification" content="2bKNvyyGh6DUlOvH1PYsmKN4KRlb-0ZI7TvFtuKLeAc" />
+
+    <link href="style.css" type="text/css" rel="stylesheet">
+    <link href="http://extras.denverpost.com/app/mapgame/normalize.css" type="text/css" rel="stylesheet">
+    <link href="http://extras.denverpost.com/app/mapgame/style.css" type="text/css" rel="stylesheet">
+    <style type="text/css">
+        body { margin:2%; }
+        @media only screen and (max-width:650px) {
+        }
+    </style>
+
+    
+    <script type="text/javascript" src="http://extras.denverpost.com/media/js/jquery-min.js"></script>
+    <script type="text/javascript" src="http://www.googletagservices.com/tag/js/gpt.js"></script>
+
+    <script type="text/javascript">
+        var iframe = '', kiosk = '';
+        if ( document.location.hash === '#iframe' ) iframe = 1;
+        if ( document.location.hash === '#kiosk' ) { iframe = 1; kiosk = 1; }
+        if ( iframe === '' ) {
+        //Chartbeat startup
+        var _sf_startpt=(new Date()).getTime();
+        var _sf_async_config={};
+        }
+    </script>
+</head>
+<body>
+    <h1>Colorado Map Game</h1>
+
+    <!-- START #MAPGAME# -->
+
+<script>
+$(document).ready( function () { 
+    mapg_config = 
+    {  
+        log_guesses: 1,
+        //log_url: 'admin/index.php',
+        log_url: 'http://denverpostplus.com/app/mapgame/tally.php',
+        target_name: 'Denver',
+        target_slug: 'denver',
+        target_type: 'latlng',
+        //target_type: 'boundary',
+        //boundary_file: '/mapgame/www/kml/state/montana.kml',
+        //boundary_file: '/mapgame/www/kml/state/colorado.kml',
+        unit: 'miles', // miles or km
+        radius: 8,
+        zoom: 4,
+        target: new google.maps.LatLng(39.74068936038659, -104.98829126358032),
+        centerlatlng: new google.maps.LatLng(39,-105.32),
+        styles: [
+          {
+            "featureType": "road",
+            "stylers": [
+              { "visibility": "off" }
+            ]
+          },{
+            "featureType": "administrative.locality",
+            "stylers": [
+              { "visibility": "off" }
+            ]
+          },{
+            "featureType": "administrative.province",
+            "elementType": "labels",
+            "stylers": [
+              { "visibility": "off" }
+            ]
+          }
+        ]
+    };
+});
+</script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places,drawing,geometry"></script>
+    <script src="../js/geoxml3.js"></script>
+    <script src="../js/ProjectedOverlay.js"></script>
+    <script src="../mapgame.js"></script>
+    <h2>Where is Denver on the map?</h2>
+    <p>
+        Drag the marker to where you think Denver is on this map of Colorado. 
+        When you drop it, the answer will appear, and you'll see how your guess compares with everyone else who has played.
+    </p>
+    <h3 id="result"></h3>
+    <div id="map-canvas"></div>
+    <style type="text/css">
+        #map-canvas { width: 100%; height: 500px; margin: auto; }
+    </style>
+
+    <!--STARTMAPNAV-->
+<nav>
+<h3>Previous map games</h3>
+<h4 id="group-games">Group Games</h4>
+<ul>
+<li><a href="ride-the-rockies-2015.html">Where are the 2015 Ride The Rockies towns? map game</a></li>
+<li><a href="canadian-provinces.html">Where are the Canadian provinces and territories?</a></li>
+<li><a href="western-united-states.html">Where are the states of the contiguous Western U.S.?</a></li>
+<li><a href="super-tuesday-2016.html">Where are the states in Super Tuesday's election?</a></li>
+</ul>
+
+<h4 id="colorado-map">Colorado Map Games</h4>
+<ul>
+<li><a href="denver.html">Where is Denver? map game</a></li>
+<li><a href="colorado.html">Where is Colorado? map game</a></li>
+<li><a href="coors-field.html">Where is Coors Field? map game</a></li>
+<li><a href="red-rocks.html">Where is Red Rocks? map game</a></li>
+<li><a href="colorado-music-festivals-2015.html">Where are Colorado's major music festivals? map game</a></li>
+<li><a href="weld-county.html">Where is Weld County? map game</a></li>
+<li><a href="dove-valley.html">Where is the Denver Broncos training facility at Dove Valley? map game</a></li>
+<li><a href="denver-botanic-gardens.html">Where are the Denver Botanic Gardens? map game</a></li>
+<li><a href="pueblo.html">Where is Pueblo?</a></li>
+<li><a href="mile-high.html">Where is Sports Authority Field at Mile High?</a></li>
+</ul>
+
+<h4 id="north-america-map">North America Map Games</h4>
+<ul>
+<li><a href="tennessee.html">Where is Tennessee? map game</a></li>
+<li><a href="kansas.html">Where is Kansas? map game</a></li>
+<li><a href="nebraska.html">Where is Nebraska? map game</a></li>
+<li><a href="iowa.html">Where is Iowa? map game</a></li>
+<li><a href="south-carolina.html">Where is South Carolina? map game</a></li>
+<li><a href="wisconsin.html">Where is Wisconsin? map game</a></li>
+<li><a href="puerto-rico.html">Where is Puerto Rico?</a></li>
+<li><a href="guantanamo-bay.html">Where is Guantanamo Bay?</a></li>
+<li><a href="idaho.html">Where is Idaho?</a></li>
+<li><a href="oregon.html">Where is Oregon?</a></li>
+<li><a href="manitoba.html">Where is Manitoba?</a></li>
+<li><a href="nevada.html">Where is Nevada?</a></li>
+<li><a href="santa-clara.html">Where is Santa Clara, California?</a></li>
+<li><a href="north-carolina.html">Where is North Carolina?</a></li>
+<li><a href="new-hampshire.html">Where is New Hampshire?</a></li>
+<li><a href="omaha.html">Where is Omaha, Nebraska?</a></li>
+<li><a href="cuba.html">Where is Cuba?</a></li>
+</ul>
+
+<h4 id="world-map">World Map Games</h4>
+<ul>
+<li><a href="syria.html">Where is Syria? map game</a></li>
+<li><a href="ireland.html">Where is Ireland? map game</a></li>
+<li><a href="switzerland.html">Where is Switzerland? map game</a></li>
+<li><a href="greece.html">Where is Greece? map game</a></li>
+<li><a href="iran.html">Where is Iran? map game</a></li>
+<li><a href="cyprus.html">Where is Cyprus? map game</a></li>
+<li><a href="south-korea.html">Where is South Korea? map game</a></li>
+<li><a href="afghanistan.html">Where is Afghanistan?</a></li>
+<li><a href="turkey.html">Where is Turkey?</a></li>
+<li><a href="angola.html">Where is Angola?</a></li>
+<li><a href="ecuador.html">Where is Ecuador?</a></li>
+<li><a href="bahrain.html">Where is Bahrain?</a></li>
+<li><a href="united-arab-emirates.html">Where is the United Arab Emirates?</a></li>
+<li><a href="lebanon.html">Where is Lebanon?</a></li>
+<li><a href="paris.html">Where is Paris?</a></li>
+<li><a href="iraq.html">Where is Iraq?</a></li>
+<li><a href="saudi-arabia.html">Where is Saudi Arabia?</a></li>
+<li><a href="yemen.html">Where is Yemen?</a></li>
+<li><a href="kuwait.html">Where is Kuwait?</a></li>
+<li><a href="pakistan.html">Where is Pakistan?</a></li>
+</ul>
+</nav>
+<!--ENDMAPNAV-->
+
+
+
+
+
+
+
+
+
+
+
+    <!-- END #MAPGAME# -->
+
+    <footer>
+    <!--ADS-->
+    <div id='dfp-20' style="margin-bottom:10px;">
+        <script type='text/javascript'>
+            googletag.defineSlot('/8013/denverpost.com/News',[[300,250],[300,600],[160,600],[300,1050]], 'dfp-20').addService(googletag.pubads()).setTargeting('pos',['Cube1_RRail_ATF']).setTargeting('kv','headlines');                                          
+            googletag.pubads().enableSyncRendering();
+            googletag.enableServices();                                         
+            googletag.display('dfp-20');
+        </script>
+    </div>
+    <div id='dfp-21' style="margin-bottom:10px;">
+        <script type='text/javascript'>
+            googletag.defineSlot('/8013/denverpost.com/News',[[300,250]], 'dfp-21').addService(googletag.pubads()).setTargeting('pos',['Cube2_RRail_mid']).setTargeting('kv','headlines');
+            googletag.pubads().enableSyncRendering();
+            googletag.enableServices();                                         
+            googletag.display('dfp-21');
+        </script>
+    </div>
+    <div id='dfp-34'><script type='text/javascript'>
+        googletag.defineSlot('/8013/denverpost.com/News',[[300,250],[300,600]], 'dfp-34').addService(googletag.pubads()).setTargeting('pos',['Cube3b_Flex']).setTargeting('kv','headlines');                                            
+        googletag.pubads().enableSyncRendering();
+        googletag.enableServices();                                         
+        googletag.display('dfp-34');
+    </script></div><!-- End DFP Premium ad uniqueId: dfp-34 --><!-- Begin DFP Premium ad uniqueId: dfp-23 --><div id='dfp-23'><script type='text/javascript'>
+        googletag.defineSlot('/8013/denverpost.com/News',[[300,250]], 'dfp-23').addService(googletag.pubads()).setTargeting('pos',['Cube4_BottomLine']).setTargeting('kv','headlines');                                         
+        googletag.pubads().enableSyncRendering();
+        googletag.enableServices();                                         
+        googletag.display('dfp-23');
+    </script></div>
+    <div id='dfp-22'><script type='text/javascript'>
+        googletag.defineSlot('/8013/denverpost.com/News',[[300,250]], 'dfp-22').addService(googletag.pubads()).setTargeting('pos',['Cube3_RRail_lower']).setTargeting('kv','headlines');                                            
+        googletag.pubads().enableSyncRendering();
+        googletag.enableServices();                                         
+        googletag.display('dfp-22');
+    </script></div>
+    <div id='dfp-18'><script type='text/javascript'>
+        googletag.defineSlot('/8013/denverpost.com/News',[[970,30]], 'dfp-18').addService(googletag.pubads()).setTargeting('pos',['SBB']).setTargeting('kv','headlines');                                           
+        googletag.pubads().enableSyncRendering();
+        googletag.enableServices();                                         
+        googletag.display('dfp-18');
+    </script></div>
+    <!--ENDADS-->
+    <script type="text/javascript">
+        //Chartbeat stuff
+        _sf_async_config.uid = 2671;
+        _sf_async_config.domain = 'denverpost.com';
+        _sf_async_config.sections = 'travel,games';
+        _sf_async_config.useCanonical = true;
+        (function(){
+            function loadChartbeat() {
+                window._sf_endpt=(new Date()).getTime();
+                var e = document.createElement('script');
+                e.setAttribute('language', 'javascript');
+                e.setAttribute('type', 'text/javascript');
+                e.setAttribute('src','//static.chartbeat.com/js/chartbeat.js');
+                document.body.appendChild(e);
+            }
+            var oldonload = window.onload;
+            window.onload = (typeof window.onload != 'function') ? loadChartbeat : function() { oldonload(); loadChartbeat(); };
+        })();
+    </script>
+    <p>Copyright &copy; 2015-2016 <a href="http://www.denverpost.com/">The Denver Post</a></p>
+    <p>
+        <a href="http://www.denverpost.com/weather#denver">Denver Weather</a> 
+        &bull; <a href="http://www.denverpost.com/rockies">Rockies</a>
+        &bull; <a href="http://www.denverpost.com/broncos">Broncos</a>
+        &bull; <a href="http://www.denverpost.com/arcade/ci_26520665/daily-crossword">Daily Crossword</a>
+        &bull; <a href="http://www.denverpost.com/sudoku">Sudoku</a>
+    </p>
+    </footer>
+
+
+
+    <script>
+        if ( iframe === 1 )
+        {
+            $('h1, footer, nav, #previous').remove()
+        }
+    </script>
+</body>
+</html>

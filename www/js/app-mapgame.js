@@ -88,7 +88,7 @@ var mapg = {
         //mapTypeId: google.maps.MapTypeId.SATELLITE,
         mapTypeId: google.maps.MapTypeId.TERRAIN,
         disableDoubleClickZoom: true,
-        draggable: false,
+        draggable: true,
         scrollwheel: false,
         styles: [
           {
@@ -196,7 +196,7 @@ var mapg = {
                 }
                 })
                 .fail(function() {
-                    $('#result').append(' Sorry, we could not reach the upstream servers. Please <a href="mailto:jmurphy@denverpost.com">email Joe and let him know this game is busted</a>... or you can refresh the page and try again.');
+                    $('#result').append(' Sorry, we could not reach the upstream servers.');
                 })
                 .always(function() {
                 });
