@@ -7,10 +7,6 @@ Handle form requests such as
     header("Access-Control-Allow-Methods: GET, POST");
     header("Vary: Accept-Encoding");
 
-// Because handling form requests is easier with PHP.
-// Return the AJAX request
-
-
 function error_out($slug)
 {
     $error_url = 'http://interactive.nydailynews.com/error?';
@@ -25,7 +21,6 @@ if ( !isset($_GET) ) error_out('nopost');
 if ( !isset($_GET['distance']) ) error_out('no-distance');
 $distance = intval($_GET['distance']);
 if ( $distance < 0 ) header('Location: ' . $_SERVER['HTTP_REFERER'] . '?source=err_novote');
-
 
 // Passed the security checks. Now we add the record to the database.
 require_once ($SERVER_ROOT . 'includes/php/mysql_connect_staging.php');
