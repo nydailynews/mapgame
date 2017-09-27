@@ -116,9 +116,9 @@
         <h1>Map quiz: Can you find Puerto Rico on a map of the Caribbean?</h1>
         <div>
         <ul class="ra-share" id="ra-share-top">
-            <li class="rt-share-f"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://interactive.nydailynews.com/quiz/map-puerto-rico/">facebook</a></li>
-            <li class="ra-share-t"> <a target="_blank" href="https://twitter.com/intent/tweet?text=Map quiz: Can you find Puerto Rico on a map of the Caribbean?&amp;url=http://interactive.nydailynews.com//quiz/map-puerto-rico/&amp;via=NYDNi&amp;related=NYDailyNews">Tweet</a></li>
-            <li class="ra-share-e"> <a href="mailto:?subject=Aaron Judge home run tracker&amp;body=Puerto is having a hard time in the aftermath of Hurricane Maria. Can you find the island on a map? http://interactive.nydailynews.com/quiz/map-puerto-rico/">email</a> </li>
+            <li class="rt-share-f"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://interactive.nydailynews.com/quiz/map-quiz/puerto-rico/">facebook</a></li>
+            <li class="ra-share-t"> <a target="_blank" href="https://twitter.com/intent/tweet?text=Map quiz: Can you find Puerto Rico on a map of the Caribbean?&amp;url=http://interactive.nydailynews.com/quiz/map-quiz/puerto-rico/&amp;via=NYDNi&amp;related=NYDailyNews">Tweet</a></li>
+            <li class="ra-share-e"> <a href="mailto:?subject=Can you find Puerto Rico on a map?&amp;body=Puerto was devastated by Hurricane Maria. Can you find the island territory on a map? http://interactive.nydailynews.com/quiz/map-quiz/puerto-rico/">email</a> </li>
         </ul>
     </div>
         <p>The island territory of Puerto Rico has been in the news a lot after the devastation it has suffered in the wake of Hurricane Maria. But an informal poll suggests that many people don't know where it is in relation to other hard-hit Caribbean islands.</p>
@@ -151,28 +151,73 @@ $(document).ready( function () {
         centerlatlng: new google.maps.LatLng(23,-73),
         markerlatlng: new google.maps.LatLng(28,-74),
         styles: [
-          {
-            "featureType": "road",
-            "stylers": [
-              { "visibility": "off" }
-            ]
-          },{
-            "featureType": "administrative.locality",
-            "stylers": [
-              { "visibility": "off" }
-            ]
-          },{
-            "featureType": "administrative.province",
-            "stylers": [
-              { "visibility": "off" }
-            ]
-          },{
-            "featureType": "administrative.country",
-            "stylers": [
-              { "visibility": "off" }
-            ]
-          }
-        ]
+  {
+    "elementType": "labels",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "administrative",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "administrative.land_parcel",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "administrative.neighborhood",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "poi",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "road",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "road",
+    "elementType": "labels.icon",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "transit",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  }
+]
     };
 });
 </script>
