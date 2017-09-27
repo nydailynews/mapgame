@@ -88,7 +88,7 @@ var mapg = {
         //mapTypeId: google.maps.MapTypeId.SATELLITE,
         mapTypeId: google.maps.MapTypeId.TERRAIN,
         disableDoubleClickZoom: true,
-        draggable: false,
+        draggable: true,
         scrollwheel: false,
         styles: [
           {
