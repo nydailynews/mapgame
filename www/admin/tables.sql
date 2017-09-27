@@ -44,4 +44,4 @@ CREATE TABLE `mapgame_group_guesses` (
   `ip` varchar(30) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`id`),
   KEY `games_id` (`games_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
