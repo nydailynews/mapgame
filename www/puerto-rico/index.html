@@ -16,13 +16,13 @@
     <meta name="twitter:title" content='Map quiz: Can you find Puerto Rico on a map?' />
 
     <!-- Descriptions -->
-    <meta name="description" content="Map quiz: Can you find Puerto Rico on a map of the Caribbean?" />
-    <meta property="og:description" content="Map quiz: Can you find Puerto Rico on a map of the Caribbean?" />
-    <meta name="twitter:description" content="Map quiz: Can you find Puerto Rico on a map of the Caribbean?" />
+    <meta name="description" content="Given a map of the Caribbean, can you locate Puerto Rico? Play the New York Daily News map quiz and see how your results compare with everyone else." />
+    <meta property="og:description" content="Given a map of the Caribbean, can you locate Puerto Rico? Play the New York Daily News map quiz and see how your results compare with everyone else." />
+    <meta name="twitter:description" content="Given a map of the Caribbean, can you locate Puerto Rico? Play the New York Daily News map quiz and see how your results compare with everyone else." />
 
     <!-- KEYWORD -->
-    <meta name="keywords" content="TAGS" />
-    <meta name="news_keywords" content="TAGS" />
+    <meta name="keywords" content="Puerto Rico,Where is Puerto Rico,Puerto Rico map" />
+    <meta name="news_keywords" content="Puerto Rico,Where is Puerto Rico,Puerto Rico map" />
 
     <!-- LINK -->
     <link rel="canonical" href="http://interactive.nydailynews.com/quiz/map-quiz/puerto-rico/">
@@ -30,8 +30,8 @@
     <meta name="twitter:url" content="http://interactive.nydailynews.com/quiz/map-quiz/puerto-rico/" />
 
     <!-- THUMBNAIL IMAGE-->
-    <meta property="og:image" content="static/img/share.png" />
-    <meta name="twitter:image" content="static/img/share.png" />
+    <meta property="og:image" content="http://interactive.nydailynews.com/quiz/map-quiz/puerto-rico/img/share.png" />
+    <meta name="twitter:image" content="http://interactive.nydailynews.com/quiz/map-quiz/puerto-rico/img/share.png" />
     <meta name="twitter:image:alt" content="A description of the twitter image" />
     <meta property="og:image:width" content="1024" />
     <meta property="og:image:height" content="512" />
@@ -43,11 +43,11 @@
             "@type": "NewsArticle",
             "headline": "Map quiz: Can you find Puerto Rico on a map?",
             "url": "http://interactive.nydailynews.com/quiz/map-quiz/puerto-rico/",
-            "thumbnailUrl": "static/img/share.png",
-            "dateCreated": "2017-07-12T06:00:00Z",
+            "thumbnailUrl": "http://interactive.nydailynews.com/quiz/map-quiz/puerto-rico/img/share.png",
+            "dateCreated": "2017-09-27T06:00:00Z",
             "articleSection": "Interactive",
-            "creator": ["Reporter Name", "Interactive Project"],
-            "keywords": ["interactive project","interactive"]
+            "creator": ["Interactive Quiz", "Kelli R. Parker"],
+            "keywords": ["interactive quiz","interactive","quizzes","puerto rico"]
         }
     </script>
 
@@ -113,7 +113,7 @@
 <!-- CONTENT-START -->
 <main>
     <article>
-        <h1>Map quiz: Can you find Puerto Rico on a map of the Caribbean?</h1>
+        <h1><span>Map quiz:</span> Can you find Puerto Rico on a map of the Caribbean?</h1>
         <div>
         <ul class="ra-share" id="ra-share-top">
             <li class="rt-share-f"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://interactive.nydailynews.com/quiz/map-quiz/puerto-rico/">facebook</a></li>
@@ -121,12 +121,13 @@
             <li class="ra-share-e"> <a href="mailto:?subject=Can you find Puerto Rico on a map?&amp;body=Puerto was devastated by Hurricane Maria. Can you find the island territory on a map? http://interactive.nydailynews.com/quiz/map-quiz/puerto-rico/">email</a> </li>
         </ul>
     </div>
-        <p>President Donald Trump announced that he plans to visit Puerto Rico next week. The island and U.S. territory has been in the news after the devastation it has suffered in the wake of Hurricane Maria. But an informal poll suggests that many people don't know where it is in relation to other hard-hit Caribbean islands.</p>
+        <p>President Donald Trump announced that he plans to visit <a href="http://www.nydailynews.com/tags/puerto-rico">Puerto Rico</a> next week. The island and U.S. territory has been in the news after the devastation it has suffered in the wake of Hurricane Maria. But an informal poll suggests that many people don't know where it is in relation to other hard-hit Caribbean islands.</p>
         <p>Click and drag the map marker to where you think Puerto Rico is on this map of the Caribbean. When you drop it, the answer will appear and you’ll see how your guess compares with everyone else who has played so far.</p>
-        <p style="text-transform: uppercase; font-weight: bold; margin-bottom: 0px;">Click and drag the map marker to where you think Puerto Rico is.</p>
+        <p id="call-to-action">Click and drag the map marker to where you think Puerto Rico is.</p>
         <div id="map-canvas"></div>
 
         <h3 id="result"></h3>
+        <p>Read our <a href="http://www.nydailynews.com/tags/puerto-rico">recent coverage of Puerto Rico news</a>.</p>
     </article>
 
     <div class="ad center">
@@ -141,7 +142,6 @@ $(document).ready( function () {
     mapg_config = 
     { 
         log_guesses: 1,
-        //log_url: 'admin/index.php',
         log_url: 'http://interactiveqa.nydailynews.com/quiz/map-quiz/php/tally/',
         target_name: 'Puerto Rico',
         target_slug: 'puerto-rico',
@@ -154,69 +154,37 @@ $(document).ready( function () {
         styles: [
   {
     "elementType": "labels",
-    "stylers": [
-      {
-        "visibility": "off"
-      }
-    ]
+    "stylers": [ { "visibility": "off" } ]
   },
   {
     "featureType": "administrative",
     "elementType": "geometry",
-    "stylers": [
-      {
-        "visibility": "off"
-      }
-    ]
+    "stylers": [ { "visibility": "off" } ]
   },
   {
     "featureType": "administrative.land_parcel",
-    "stylers": [
-      {
-        "visibility": "off"
-      }
-    ]
+    "stylers": [ { "visibility": "off" } ]
   },
   {
     "featureType": "administrative.neighborhood",
-    "stylers": [
-      {
-        "visibility": "off"
-      }
-    ]
+    "stylers": [ { "visibility": "off" } ]
   },
   {
     "featureType": "poi",
-    "stylers": [
-      {
-        "visibility": "off"
-      }
-    ]
+    "stylers": [ { "visibility": "off" } ]
   },
   {
     "featureType": "road",
-    "stylers": [
-      {
-        "visibility": "off"
-      }
-    ]
+    "stylers": [ { "visibility": "off" } ]
   },
   {
     "featureType": "road",
     "elementType": "labels.icon",
-    "stylers": [
-      {
-        "visibility": "off"
-      }
-    ]
+    "stylers": [ { "visibility": "off" } ]
   },
   {
     "featureType": "transit",
-    "stylers": [
-      {
-        "visibility": "off"
-      }
-    ]
+    "stylers": [ { "visibility": "off" } ]
   }
 ]
     };
