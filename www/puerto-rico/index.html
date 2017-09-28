@@ -103,7 +103,6 @@
     <script src="http://interactive.nydailynews.com/library/vendor-nav/vendor-include.js" defer></script>
 
 </head>
-
 <body id="nydailynews" data-section="nydailynews" data-subsection="NY Daily News">
 
 <!-- SITEHEADER-START -->
@@ -122,8 +121,15 @@
         </ul>
     </div>
     <section id="intro">
-        <p>President Donald Trump announced that he plans to visit <a href="http://www.nydailynews.com/tags/puerto-rico">Puerto Rico</a> next week. The island and U.S. territory has been in the news after the devastation it has suffered in the wake of Hurricane Maria. But an informal poll suggests that many people don't know where it is in relation to other hard-hit Caribbean islands.</p>
-        <p>Click and drag the map marker to where you think Puerto Rico is on this map of the Caribbean. When you drop it, the answer will appear and you’ll see how your guess compares with everyone else who has played so far.</p>
+        <p>
+            President Donald Trump announced that he plans to visit <a href="http://www.nydailynews.com/tags/puerto-rico">Puerto Rico</a> next week.
+            The island and U.S. territory has been in the news after the devastation it has suffered in <a href="http://www.nydailynews.com/tags/hurricane-maria">Hurricane Maria's</a> wake.
+            But do people know where Puerto Rico actually is? <strong>Let's find out.</strong>
+        </p>
+        <p>
+            Click and drag the map marker to where you think Puerto Rico is on this map of the Caribbean.
+            When you drop it, the answer will appear and you’ll see how your guess compares with everyone else who has played so far.
+        </p>
         <p id="call-to-action">Click and drag the map marker to where you think Puerto Rico is.</p>
     </section>
     <section id="interface">
@@ -146,11 +152,11 @@ $(document).ready( function () {
     mapg_config = 
     { 
         log_guesses: 1,
-        log_url: 'http://interactiveqa.nydailynews.com/quiz/map-quiz/php/tally/',
+        log_url: 'http://interactive.nydailynews.com/quiz/map-quiz/php/tally/',
         target_name: 'Puerto Rico',
         target_slug: 'puerto-rico',
         target_type: 'boundary',
-        boundary_file: 'http://interactiveqa.nydailynews.com/quiz/map-quiz/kml/united-states/territory/puerto-rico.kml',
+        boundary_file: 'http://interactive.nydailynews.com/quiz/map-quiz/kml/united-states/territory/puerto-rico.kml',
         unit: 'miles', // miles or km
         zoom: 5,
         centerlatlng: new google.maps.LatLng(23,-73),
