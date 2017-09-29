@@ -154,6 +154,11 @@ var mapg = {
                 // **TODO provide a link so they can see everyone else's guesses.
                 // data will look something like { "guesses": "1", "average": "8" }
 
+                // Scroll to the result.
+                $('html, body').animate({
+                    scrollTop: $("#result").offset().top
+                }, 2000);
+
                 var average = Math.round(data.average);
                 if ( average < 5 ) average = Math.round(data.average*10) / 10;
 

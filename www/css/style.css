@@ -35,6 +35,7 @@ p, li {
     text-transform: uppercase;
     font-weight: bold;
     margin-bottom: 0px;
+    line-height: 16px;
 }
 
 ol, dl {
