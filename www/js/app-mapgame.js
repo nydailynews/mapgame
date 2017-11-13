@@ -313,18 +313,24 @@ var mapg = {
         // See how close the guess was to the nearest point,
         // in case the guess was outside the boundary.
         console.log(obj);
-        coords = obj[0].placemarks[0].Polygon[0].outerBoundaryIs[0].coordinates;
-        var len = coords.length;
+        shapes = obj[0].placemarks[0].Polygon;
+        var shapes_len = shapes.length;
         var best_guess = 0.0;
         var in_bounds = google.maps.geometry.poly.containsLocation(window.mapg.guess.latLng, obj[0].gpolygons[0]);
         if ( in_bounds === false )
         {
-            for ( i = 0; i < len; i++ )
+            for ( var j = 0; j < shapes_len; j++ )
             {
-                var distance = window.mapg.great_circle(coords[i].lat, coords[i].lng, window.mapg.guess.latLng.lat(), window.mapg.guess.latLng.lng());
-                if ( best_guess === 0.0 ) best_guess = distance;
-                else if ( distance < best_guess ) best_guess = distance;
+                coords = shapes[j].outerBoundaryIs[0].coordinates;
+                var len = coords.length;
+                for ( var i = 0; i < len; i++ )
+                {
+                    var distance = window.mapg.great_circle(coords[i].lat, coords[i].lng, window.mapg.guess.latLng.lat(), window.mapg.guess.latLng.lng());
+                    if ( best_guess === 0.0 ) best_guess = distance;
+                    else if ( distance < best_guess ) best_guess = distance;
+                }
             }
+
             var guess_rounded = Math.round(best_guess);
         }
         else
