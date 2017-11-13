@@ -281,7 +281,7 @@ var mapg = {
             // Show where the target was.
             var target_marker = new google.maps.Marker(
             {
-                icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png',
+                icon: '//maps.google.com/mapfiles/ms/icons/green-dot.png',
                 position: this.config.target,
                 map: this.map,
                 draggable: false,
@@ -312,11 +312,12 @@ var mapg = {
     {
         // See how close the guess was to the nearest point,
         // in case the guess was outside the boundary.
-        console.log(obj);
         shapes = obj[0].placemarks[0].Polygon;
+        console.log(obj, shapes);
         var shapes_len = shapes.length;
         var best_guess = 0.0;
         var in_bounds = google.maps.geometry.poly.containsLocation(window.mapg.guess.latLng, obj[0].gpolygons[0]);
+        var guess_rounded = 0;
         if ( in_bounds === false )
         {
             for ( var j = 0; j < shapes_len; j++ )
@@ -331,11 +332,13 @@ var mapg = {
                 }
             }
 
-            var guess_rounded = Math.round(best_guess);
+            guess_rounded = Math.round(best_guess);
         }
         else
         {
-            var guess_rounded = 0;
+            // woohoo a correct answer
+            //obj[0].styles.inline['color'] = '00ff00ff';
+            //obj[0].placemarks[0].style.color = '00ff00ff';
         }
         window.mapg.show_answer(guess_rounded);
     },
