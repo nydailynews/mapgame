@@ -83,7 +83,7 @@
 			"template": "article",
 			"revision": "201609014009",
 			"bidder": { contains: function() {} },
-			"targetPath": document.the Philippines.pathname
+			"targetPath": document.location.pathname
 		};
 		var nydnDO = [ { 
 			'title':'xxxMap quiz: Can you find the Philippines on a map?xxx', 
@@ -124,7 +124,7 @@
 	</div>
 	<section id="intro">
 		<p>The President has spent the last 12 days touring Asia. After stops in Japan, South Korea, China and Vietnam, he is capping his trip with an international summit in the Philippines.</p>
-		<p>Made up of more than seven thousand islands, the Philippines has been in the news for the bloody drug war being overseen by the nation's president, <a href="http://www.nydailynews.com/tags/rodrigo-duterte">Rodrigo Duterte.</a></p>
+		<p>The island nation has made news for its human rights violations, notorious death squads and the bloody drug war overseen by the nation's president, <a href="http://www.nydailynews.com/tags/rodrigo-duterte">Rodrigo Duterte.</a> Duterte has both denied and spoken of his connection to the death squads.</p>
 		<p>
 			Do people know where the Philippines actually is? <strong>Let's&nbsp;find&nbsp;out.</strong>
 		</p>
@@ -139,7 +139,7 @@
 
 		<h3 id="result"></h3>
 	</section>
-		<p style="margin-left: 20px;">Read our <a href="http://www.nydailynews.com/tags/philippines">recent coverage of the Philippines</a>.</p>
+		<p>Read our <a href="http://www.nydailynews.com/tags/philippines">recent coverage of the Philippines</a>.</p>
 	</article>
 
 	<div class="ad center">
@@ -160,9 +160,9 @@ $(document).ready( function () {
 		target_type: 'boundary',
 		boundary_file: '/quiz/map-quiz/kml/asia/country/philippines.kml',
 		unit: 'miles', // miles or km
-		zoom: 5,
-		centerlatlng: new google.maps.LatLng(23,-73),
-		markerlatlng: new google.maps.LatLng(28,-74),
+		zoom: 4,
+		centerlatlng: new google.maps.LatLng(6,114),
+		markerlatlng: new google.maps.LatLng(4,106),
 		styles: [
   {
 	"elementType": "labels",
