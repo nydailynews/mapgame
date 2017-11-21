@@ -141,7 +141,7 @@ var mapg = {
     {
         // Reload ads, analytics
         if ( typeof googletag !== 'undefined' ) googletag.pubads().refresh();
-        if ( typeof PARSELY !== 'undefinted' ) PARSELY.beacon.trackPageView({ url: document.location.href, urlref: document.location.href, js: 1 });
+        if ( typeof PARSELY !== 'undefined' ) PARSELY.beacon.trackPageView({ url: document.location.href, urlref: document.location.href, js: 1 });
 
         // Send a request to a remote server to log how far the guess was from the mark
         if ( this.config.log_guesses !== 0 )
