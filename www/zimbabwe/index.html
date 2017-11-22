@@ -164,7 +164,7 @@ $(document).ready( function () {
 		target_type: 'boundary',
 		boundary_file: '/quiz/map-quiz/kml/africa/country/zimbabwe.kml',
 		unit: 'miles', // miles or km
-		zoom: 4,
+		zoom: is_mobile ? 3 : 4,
 		centerlatlng: new google.maps.LatLng(-4,23),
 		markerlatlng: new google.maps.LatLng(-6,43),
 		styles: [
