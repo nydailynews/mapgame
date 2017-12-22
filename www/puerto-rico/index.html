@@ -146,7 +146,22 @@
 
         <h3 id="result"></h3>
     </section>
-        <p style="margin-left: 20px;">Read our <a href="http://www.nydailynews.com/tags/puerto-rico">recent coverage of Puerto Rico</a>.</p>
+        <p style="margin-left: 20px;" class="latest-news"><a href="http://www.nydailynews.com/tags/puerto-rico">PUERTO RICO NEWS</a>: <strong id="latest-news-headline"></strong></p>
+        <p style="margin-left: 20px;">More: <a href="/project/how-long/has-puerto-rico-been-without-power/">COUNT-DOWN: How long has Puerto Rico been without power</a>?</p>
+    <script>
+        var s = document.createElement('script');
+        var rando = function() { 
+            var text = "";
+            var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+            for( var i=0; i < 5; i++ )
+                text += possible.charAt(Math.floor(Math.random() * possible.length));
+            return text;
+        }
+        s.onload = function() { document.getElementById('latest-news-headline').innerHTML = hed; }
+        s.setAttribute('src', '//interactive.nydailynews.com/project/how-long/has-puerto-rico-been-without-power/tag-puerto-rico-1.js?' + rando());
+        document.getElementsByTagName('head')[0].appendChild(s);
+    </script>
     </article>
 
     <div class="ad center">
