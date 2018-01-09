@@ -31,10 +31,13 @@ p, li {
     margin-bottom: 20px;
 }
 
+p.bottom {
+    margin-bottom: 125px;
+}
+
 #call-to-action {
     text-transform: uppercase;
     font-weight: bold;
-    margin-bottom: 10px;
     line-height: 16px;
 }
 
