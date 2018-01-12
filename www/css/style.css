@@ -26,8 +26,8 @@ h2 {
 
 p, li {
     font-family: 'PT Serif', serif;
-    font-size: 30px;
-    line-height: 45px;
+    font-size: 17px;
+    line-height: 30px;
     margin-bottom: 20px;
 }
 
@@ -38,7 +38,7 @@ p.bottom {
 #call-to-action {
     text-transform: uppercase;
     font-weight: bold;
-    line-height: 45px;
+    line-height: 16px;
 }
 
 ol, dl {

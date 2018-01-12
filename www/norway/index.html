@@ -103,6 +103,14 @@
     <script src="/library/vendor-nav/vendor-include.js" defer></script>
 
     <style>
+        p {
+            font-size: 30px;
+            line-height: 45px;
+        }
+
+        #call-to-action {
+            line-height: 45px;
+        }
     </style>
 </head>
 <body id="nydailynews" data-section="nydailynews" data-subsection="NY Daily News">
@@ -123,7 +131,7 @@
             </ul>
         </div>
         <section id="intro">
-            <p>According to our president, Norway is not a s**thole. But does he or do you know where Norway actually is? Take our quiz and find the location of this non-s**thole.</p>
+            <p>According to our president, Norway is not a “s**thole.” But does he — or do you — know where Norway actually is? Take our quiz and find the location of this non-s**thole.</p>
             <p>
                 Click and drag the map marker to where you think Norway is on this map of Europe.
                 When you drop it, the answer will appear and you’ll see how your guess compares with everyone else who has played so far.
@@ -159,9 +167,9 @@ $(document).ready( function () {
         target_name: 'Norway',
         target_slug: 'norway',
         target_type: 'boundary',
-        boundary_file: '/quiz/map-quiz/kml/united-states/territory/norway.kml',
+        boundary_file: '/quiz/map-quiz/kml/europe/country/norway.kml',
         unit: 'miles', // miles or km
-        zoom: 4,
+        zoom: is_mobile ? 3 : 4,
         centerlatlng: new google.maps.LatLng(58,20),
         markerlatlng: new google.maps.LatLng(54,3),
         styles: [
