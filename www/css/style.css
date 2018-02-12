@@ -1,5 +1,5 @@
 /* Basic index-page stylesheet */
-h1, h2, h3, h4, h5, button {
+article h1, article h2, article h3, article h4, article h5, article button {
     font-family: 'Open Sans Condensed', sans-serif;
     color: #333;
     text-rendering: optimizeLegibility;
@@ -9,22 +9,22 @@ h1, h2, h3, h4, h5, button {
     display: none;
 }
 
-h1 {
+article h1 {
     font-size: 50px;
     line-height: 55px;
     margin: 40px auto 20px auto;
 }
-h1 span {
+article h1 span {
     text-transform: uppercase;
 }
 
-h2 {
+article h2 {
     font: bold, 26px, 'Open Sans Condensed', sans-serif;
     margin-top: 30px;
     margin-bottom: 10px;
 }
 
-p, li {
+article p, article li {
     font-family: 'PT Serif', serif;
     font-size: 17px;
     line-height: 30px;
@@ -41,20 +41,20 @@ p.bottom {
     line-height: 16px;
 }
 
-ol, dl {
+article ol, article dl {
     font-family: inherit;
     line-height: 25px;
 }
 
-dt {
+article dt {
     color: #999;
 }
 
-dd {
+article dd {
     margin-bottom: 10px;
 }
 
-ul {
+article ul {
     font-family: 'Open Sans', sans-serif;
     font-weight: normal;
     font-size: 15px;
