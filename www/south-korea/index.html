@@ -123,14 +123,14 @@
             </ul>
         </div>
         <section id="intro">
-            <p>The 2018 Winter Olympics are underway in the South Korean city Pyongchang — not be be confused with Pyongyang, the capital of North Korea.</p>
-            <p>Hundreds of Twitter users have been mixing up the two cities but there are worlds of diffrence between them. Even though they marched together under a unification flag during the Olympic opening ceremony, North and South Korea are technically still at war.</p>
-            <p>To distinguish the South Korea ski resort from its nuclear-armed neighbor, the Olympic bid committee added an E and a capital C to make the name PyeongChang.</p>
+            <p>The<a href="http://www.nydailynews.com/tags/pyeongchang-olympics-2018/37"> 2018 Winter Olympic Games are underway</a> in the South Korean city Pyeongchang — not be be confused with Pyongyang, the capital of North Korea.</p>
+
+            <p>The South Korean ski resort's name is traditionally spelled in English as <em>Pyongchang</em>. To distinguish that from its nuclear-armed neighbor, the Olympic bid committee added an <em>e</em> and a capital <em>C</em> to change the name to PyeongChang.</p>
+
             <p>That said, do people even know where South Korea actually is? <strong>Let's&nbsp;find&nbsp;out.</strong></p>
-            <p>
-                Click and drag the map marker to where you think South Korea is on this map of Asia.
-                When you drop it, the answer will appear and you’ll see how your guess compares with everyone else who has played so far.
-            </p>
+
+            <p>Click and drag the map marker to where you think South Korea is on this map of Asia. When you drop it, the answer will appear and you’ll see how your guess compares with everyone else who has played so far.</p>
+
             <p id="call-to-action">Click and drag the map marker to where you think South Korea is.</p>
         </section>
         <section id="interface">
@@ -164,9 +164,9 @@ $(document).ready( function () {
         target_type: 'boundary',
         boundary_file: '/quiz/map-quiz/kml/united-states/territory/south-korea.kml',
         unit: 'miles', // miles or km
-        zoom: 5,
-        centerlatlng: new google.maps.LatLng(23,-73),
-        markerlatlng: new google.maps.LatLng(28,-74),
+        zoom: is_mobile ? 3 : 4,
+        centerlatlng: new google.maps.LatLng(46,140),
+        markerlatlng: new google.maps.LatLng(48,149),
         styles: [
   {
     "elementType": "labels",
@@ -175,7 +175,7 @@ $(document).ready( function () {
   {
     "featureType": "administrative",
     "elementType": "geometry",
-    "stylers": [ { "visibility": "off" } ]
+    "stylers": [ { "visibility": "on" } ]
   },
   {
     "featureType": "administrative.land_parcel",
