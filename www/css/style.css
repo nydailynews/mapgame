@@ -38,7 +38,6 @@ p.bottom {
 #call-to-action {
     text-transform: uppercase;
     font-weight: bold;
-    line-height: 16px;
 }
 
 article ol, article dl {
@@ -100,11 +99,31 @@ p.byline {
     margin-bottom: 30px;
 }
 
+/* HANDHELD */
 
-@media only screen and (max-width: 900px) {
-    h1, section#intro {
-        margin: 0 17px;
+@media only screen and (min-width: 250px) and (max-width: 727px) {
+    article h1 {
+        margin: 30px 15px;
+        line-height: 45px;
+        font-size: 40px;
     }
+
+    section#intro {
+        margin: auto 15px;
+    }
+
+    #crosshairs {
+        position: relative;
+        top: -500px;
+        left: 50vw;
+    }
+
+}
+
+/* TABLET */
+
+@media only screen and (min-width: 728px) and (max-width: 1100px) {
+
 }
 
 /* SHARE ICON CSS */
@@ -112,10 +131,11 @@ a {
     text-decoration: none;
     color: #2569D3;
 }
-#ra-share-top {
+#ra-share-top.ra-share {
     width: 100%;
     text-align: center;
-    margin: 10px auto;
+    margin: auto;
+    margin-bottom: 0;
 }
 .ra-share, .rt-share {
     position: relative;

@@ -1,6 +1,19 @@
 var mapg = {
     init: function ()
     {
+        console.log(typeof is_mobile,"hi kelli")
+        if (is_mobile == true)
+        {
+            var img = document.createElement('img');
+            img.setAttribute('id','crosshairs')
+            img.src = '../img/map-crosshairs.png';
+            img.setAttribute('alt','image of red crosshairs')
+
+            var src = document.getElementById('interface');
+            src.appendChild(img);
+        }
+
+
         // Config handling. External config objects must be named mapg_config
         if ( typeof window.mapg_config !== 'undefined' )
         {
