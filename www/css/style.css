@@ -112,6 +112,14 @@ p.byline {
         margin: auto 15px;
     }
 
+    #interface {
+        margin-bottom: -500px;
+    }
+
+    #map-canvas {
+        margin-bottom: 0;
+    }
+
     #crosshairs {
         position: relative;
         top: -500px;
