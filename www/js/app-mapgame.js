@@ -4,13 +4,21 @@ var mapg = {
         console.log(typeof is_mobile,"hi kelli")
         if (is_mobile == true)
         {
+            // creates mobile map overlay
             var img = document.createElement('img');
             img.setAttribute('id','crosshairs')
             img.src = '../img/map-crosshairs.png';
             img.setAttribute('alt','image of red crosshairs')
-
             var src = document.getElementById('interface');
             src.appendChild(img);
+
+            //creates button for mobile map interaction
+            var btn = document.createElement('button');
+            btn.setAttribute('id','submit-button')
+            btn.innerHTML = 'submit guess';
+            var btnplc = document.getElementById('intro');
+            btnplc.appendChild(btn);
+
         }
 
 

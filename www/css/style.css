@@ -126,6 +126,15 @@ p.byline {
         left: 50vw;
     }
 
+    #submit-button {
+        width: 100%;
+        border: 1px solid black;
+        background-color: #ACDBFD;
+        margin-bottom: 25px;
+        padding: 5px 10px;
+        font: bold 24px 'Open Sans Condensed', sans-serif;
+        text-transform: uppercase;
+    }
 }
 
 /* TABLET */
