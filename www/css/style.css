@@ -123,7 +123,8 @@ p.byline {
     #crosshairs {
         position: relative;
         top: -500px;
-        left: 50vw;
+        /* We subtract 25px here because the image width is 50px, so, for the image to be in the center here it has to be offset half its width. */
+        left: calc(50vw - 25px);
     }
 
     #submit-button {

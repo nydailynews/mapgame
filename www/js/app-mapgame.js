@@ -19,6 +19,7 @@ var mapg = {
         //creates button for mobile map interaction
         var btn = document.createElement('button');
         btn.setAttribute('id','submit-button')
+        btn.setAttribute('onClick', 'mapg.make_guess_handheld();');
         btn.innerHTML = 'submit guess';
         var btnplc = document.getElementById('intro');
         btnplc.appendChild(btn);
@@ -37,16 +38,19 @@ var mapg = {
         {
             this.load_handheld();
         }
-
-        answer_marker = new google.maps.Marker(
+        else
         {
-            position: this.config.markerlatlng,
-            map: this.map,
-            draggable: true,
-            title: 'Your Guess'
-        });
+            // DESKTOP ISH
+            answer_marker = new google.maps.Marker(
+            {
+                position: this.config.markerlatlng,
+                map: this.map,
+                draggable: true,
+                title: 'Your Guess'
+            });
 
-        google.maps.event.addListener(window.answer_marker, 'mouseup', function (guess) { window.mapg.make_guess(guess); });
+            google.maps.event.addListener(window.answer_marker, 'mouseup', function (guess) { window.mapg.make_guess_desktop(guess); });
+        }
 
         // If we start with a loaded boundary, load it
         if ( this.config.border_file !== '' )
@@ -274,30 +278,51 @@ var mapg = {
         }
         this.log_answer(distance, this.guess.latLng.lat(), this.guess.latLng.lng());
     },
-    make_guess: function (guess)
+    make_guess_handheld: function()
     {
-        // If the marker hasn't been moved we don't want to do anything:
-        if ( this.config.markerlatlng.lat() == guess.latLng.lat() && this.config.markerlatlng.lng() == guess.latLng.lng() )
-        {
-            console.log(this.config, guess, this.config.markerlatlng.lat(), guess.latLng.lat());
-            return false;
-        }
+        // The onClick function when the handheld button is pressed.
+        var guess = mapg.map.getCenter();
+        var ll = new google.maps.LatLng(guess.lat(), guess.lng());
+        console.log('asdfszdfzds');
+        
+        // Replace the crosshairs with a marker pin
+        //var el = document.getElementById('crosshairs');
+        //el.parentNode.removeChild(el);
 
+        var answer_marker = new google.maps.Marker(
+        {
+            position: ll,
+            map: mapg.map,
+            title: 'Your Guess'
+        });
+        mapg.make_guess(guess.lat(), guess.lng());
+    },
+    make_guess_desktop: function(guess)
+    {
         // Keep people from guessing again.
         this.guess = guess;
         window.answer_marker.draggable = false;
         google.maps.event.clearListeners(window.answer_marker, 'mouseup');
-    
+
+        this.make_guess(guess.latLng.lat(), guess.latLng.lng());
+    },
+    make_guess: function (lat, lon)
+    {
+        // If the marker hasn't been moved we don't want to do anything:
+        if ( this.config.markerlatlng.lat() == lat && this.config.markerlatlng.lng() == lon )
+        {
+            console.log(this.config, guess, this.config.markerlatlng.lat(), lat);
+            return false;
+        }
+        console.log("MOBILE? ", is_mobile, lat, lon);
+
         // Check how far the click was from the target.
         // There are two types of target checks: Lat-Long, used for small cities or foreign cities
         // (cities smaller than five miles wide, or cities we don't have boundary data for), and
         // boundary target checks. For boundary checks we need the KML string for the boundary.
         if ( this.config.target_type == 'latlng' )
         {
-            // G is lat, K is long in Google maps. NOT ANYMORE
-            // H is lat, L is long in Google maps. 20150921
-            // J is lat, M is long in Google maps. 20151012
-            var distance = this.great_circle(this.config.target.lat(), this.config.target.lng(), guess.latLng.lat(), guess.latLng.lng())
+            var distance = this.great_circle(this.config.target.lat(), this.config.target.lng(), lat, lon)
             var distance_rounded = Math.round(distance);
 
             // If we have a value for mapg.config.radius, we subtract that from the distance.
@@ -323,7 +348,7 @@ var mapg = {
         {
             // Start on the boundary work.
             // this.find_distance handles the guess calculations.
-            var guess = { lat: guess.latLng.lat(), lon: guess.latLng.lng() }
+            var guess = { lat: lat, lon: lon }
             var geoxml_config = {
                 map: this.map,
                 processStyles: true,
