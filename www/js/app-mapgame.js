@@ -1,7 +1,10 @@
 var mapg = {
+    load_handheld: function()
+    {
+        // Handheld devices use a different interface than desktop.
+    },
     init: function ()
     {
-        console.log(typeof is_mobile,"hi kelli")
         if (is_mobile == true)
         {
             // creates mobile map overlay
