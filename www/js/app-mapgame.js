@@ -280,14 +280,21 @@ var mapg = {
     },
     make_guess_handheld: function()
     {
-        // The onClick function when the handheld button is pressed.
         var guess = mapg.map.getCenter();
+        var lat = guess.lat(), lon = guess.lng();
+        // If the marker hasn't been moved we don't want to do anything:
+        if ( this.config.markerlatlng.lat() == lat && this.config.markerlatlng.lng() == lon ) return false;
+
+        // The onClick function when the handheld button is pressed.
         var ll = new google.maps.LatLng(guess.lat(), guess.lng());
-        console.log('asdfszdfzds');
         
         // Replace the crosshairs with a marker pin
-        //var el = document.getElementById('crosshairs');
-        //el.parentNode.removeChild(el);
+        var el = document.getElementById('crosshairs');
+        el.parentNode.removeChild(el);
+        
+        // Remove the submit button
+        var el = document.getElementById('submit-button');
+        el.parentNode.removeChild(el);
 
         var answer_marker = new google.maps.Marker(
         {
@@ -295,27 +302,24 @@ var mapg = {
             map: mapg.map,
             title: 'Your Guess'
         });
-        mapg.make_guess(guess.lat(), guess.lng());
+        mapg.make_guess(lat, lon);
     },
     make_guess_desktop: function(guess)
     {
+        var lat = guess.latLng.lat(), lon = guess.latLng.lng();
+        // If the marker hasn't been moved we don't want to do anything:
+        if ( this.config.markerlatlng.lat() == lat && this.config.markerlatlng.lng() == lon ) return false;
+        //console.log(this.config, guess, this.config.markerlatlng.lat(), lat);
+        
         // Keep people from guessing again.
         this.guess = guess;
         window.answer_marker.draggable = false;
         google.maps.event.clearListeners(window.answer_marker, 'mouseup');
 
-        this.make_guess(guess.latLng.lat(), guess.latLng.lng());
+        this.make_guess(lat, lon);
     },
     make_guess: function (lat, lon)
     {
-        // If the marker hasn't been moved we don't want to do anything:
-        if ( this.config.markerlatlng.lat() == lat && this.config.markerlatlng.lng() == lon )
-        {
-            console.log(this.config, guess, this.config.markerlatlng.lat(), lat);
-            return false;
-        }
-        console.log("MOBILE? ", is_mobile, lat, lon);
-
         // Check how far the click was from the target.
         // There are two types of target checks: Lat-Long, used for small cities or foreign cities
         // (cities smaller than five miles wide, or cities we don't have boundary data for), and
