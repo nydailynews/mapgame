@@ -170,6 +170,13 @@ var mapg = {
         return this.slugify(this.config.target_name);
     },
     slug: '',
+    build_tweet: function(link_text, tweet_text) {
+        // Return markup suitable for creating a link to tweet something.
+        // Markup will generally look like: <a target="_blank" href="https://twitter.com/intent/tweet?text=Here's something cool&url=http://interactive.nydailynews.com/&via=NYDNi&related=nydailynews,NYDNi">Tweet</a>
+        var tt = tweet_text.replace(/ /g, '%20');
+        var url = document.location.href;
+        return ' <a target="_blank" href="https://twitter.com/intent/tweet?text=' + tt + '&url=' + url + '&via=NYDNi&related=nydailynews,NYDNi">' + link_text + '</a>';
+    },
     log_answer: function (distance, lat, lon)
     {
         // Reload ads, analytics
@@ -206,7 +213,8 @@ var mapg = {
                     var percent_right = Math.round(data.correct/data.guesses*1000)/10;
                     if ( data.guesses == 0 ) percent = 0;
 
-                    $('#result').append(' ' + data.correct + ' ' + people + ' (' + percent_right + '%) picked right.');
+                    var how_many_right_tweet = mapg.build_tweet('tweet this', percent_right + ' percent of people playing the ' + mapg.config.target_name + ' map quiz knew where ' + mapg.config.target_name + ' was on the map.');
+                    $('#result').append(' ' + data.correct + ' ' + people + ' (' + percent_right + '%) picked right (' + how_many_right_tweet + ').');
 
                     // Calculate the percent of people they did worse / better than.
                     var esses = "es";
@@ -220,12 +228,14 @@ var mapg = {
                     if ( data.worse_than == 0 )
                     {
                         if ( better_than == 1 ) esses = "";
-                        $('#result').append('<br><br>Your guess was closer than ' + better_than + ' other guess' + esses + '. That means you did better than ' + percent_better + '% of the people who played this, and tied the other ' + percent_right + '%');
+                        $('#result').append('<br><br>Your guess was closer than ' + better_than + ' other guess' + esses + '. That means you did better than ' + percent_better + ' percent of the people who played this, and tied the other ' + percent_right + 'percent.');
                     }
                     else
                     {
-                        $('#result').append('<br><br>Your guess was further away than ' + data.worse_than + ' other guess' + esses + '. That means you did worse than ' + percent_further + '% of the people who played this.');
+                        $('#result').append('<br><br>Your guess was further away than ' + data.worse_than + ' other guess' + esses + '. That means you did worse than ' + percent_further + 'percent of the people who played this.');
                     }
+                    var tweet_text = 'I did better than ' + percent_better + ' percent of the people who played this ' + mapg.config.target_name + ' map quiz:';
+                    $('#result').append(mapg.build_tweet('Tweet this', tweet_text) + '.');
 
                     if ( distance == 0 && data.correct == 1 )
                     {
