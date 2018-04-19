@@ -115,6 +115,9 @@ p.byline {
     #interface {
         margin-bottom: -500px;
     }
+    #interface.after-guess {
+        margin-bottom: 0;
+    }
 
     #map-canvas {
         margin-bottom: 0;
@@ -127,7 +130,7 @@ p.byline {
         left: calc(50vw - 25px);
     }
 
-    #submit-button {
+    #bottom-submit, #submit-button {
         width: 100%;
         border: 1px solid black;
         background-color: #ACDBFD;
@@ -135,6 +138,10 @@ p.byline {
         padding: 5px 10px;
         font: bold 24px 'Open Sans Condensed', sans-serif;
         text-transform: uppercase;
+    }
+    #bottom-submit {
+        top: -500px;
+        position: relative;
     }
 }
 

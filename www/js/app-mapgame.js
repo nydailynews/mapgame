@@ -18,10 +18,18 @@ var mapg = {
 
         //creates button for mobile map interaction
         var btn = document.createElement('button');
-        btn.setAttribute('id','submit-button')
+        btn.setAttribute('id', 'submit-button')
         btn.setAttribute('onClick', 'mapg.make_guess_handheld();');
         btn.innerHTML = 'submit guess';
         var btnplc = document.getElementById('intro');
+        btnplc.appendChild(btn);
+        
+        // Put the button below the map too
+        var btn = document.createElement('button');
+        btn.setAttribute('id', 'bottom-submit');
+        btn.setAttribute('onClick', 'mapg.make_guess_handheld();');
+        btn.innerHTML = 'submit guess';
+        btnplc = document.getElementById('interface');
         btnplc.appendChild(btn);
     },
     init: function ()
@@ -304,9 +312,15 @@ var mapg = {
         var el = document.getElementById('crosshairs');
         el.parentNode.removeChild(el);
         
-        // Remove the submit button
+        // Remove the submit buttons
         var el = document.getElementById('submit-button');
         el.parentNode.removeChild(el);
+        var el = document.getElementById('bottom-submit');
+        el.parentNode.removeChild(el);
+        
+        // One more style clean-up
+        var el = document.getElementById('interface');
+        el.setAttribute('class', 'after-guess');
 
         var answer_marker = new google.maps.Marker(
         {
