@@ -1,37 +1,4 @@
 var mapg = {
-    load_handheld: function()
-    {
-        // Handheld devices use a different interface than desktop.
-        var action_long = 'Pan the map and bring the crosshairs over';
-        var action_short = 'click the button';
-        document.getElementById('first-action').textContent = action_long;
-        document.getElementById('second-action').textContent = action_long;
-        document.getElementById('final-action').textContent = action_short;
-        
-        // creates mobile map overlay
-        var img = document.createElement('img');
-        img.setAttribute('id','crosshairs')
-        img.src = '../img/map-crosshairs.png';
-        img.setAttribute('alt','image of red crosshairs')
-        var src = document.getElementById('interface');
-        src.appendChild(img);
-
-        //creates button for mobile map interaction
-        var btn = document.createElement('button');
-        btn.setAttribute('id', 'submit-button')
-        btn.setAttribute('onClick', 'mapg.make_guess_handheld();');
-        btn.innerHTML = 'submit guess';
-        var btnplc = document.getElementById('intro');
-        btnplc.appendChild(btn);
-        
-        // Put the button below the map too
-        var btn = document.createElement('button');
-        btn.setAttribute('id', 'bottom-submit');
-        btn.setAttribute('onClick', 'mapg.make_guess_handheld();');
-        btn.innerHTML = 'submit guess';
-        btnplc = document.getElementById('interface');
-        btnplc.appendChild(btn);
-    },
     init: function ()
     {
         // Config handling. External config objects must be named mapg_config
@@ -73,6 +40,40 @@ var mapg = {
             var kml_parser = new geoXML3.parser(geoxml_config);
             kml_parser.parse(this.config.border_file);
         }
+    },
+    load_handheld: function()
+    {
+        // Handheld devices use a different interface than desktop.
+        var action_long = 'Pan the map and bring the crosshairs over';
+        var action_short = 'click the button';
+        document.getElementById('first-action').textContent = action_long;
+        document.getElementById('second-action').textContent = action_long;
+        document.getElementById('final-action').textContent = action_short;
+        
+        // Create mobile map crosshairs overlay
+        var img = document.createElement('img');
+        img.setAttribute('id', 'crosshairs')
+        img.src = '../img/map-crosshairs.png';
+        img.setAttribute('alt', 'image of red crosshairs')
+        var src = document.getElementById('interface');
+        src.appendChild(img);
+
+        // Create button for mobile map interaction
+        var submit_text = 'Submit guess';
+        var btn = document.createElement('button');
+        btn.setAttribute('id', 'submit-button')
+        btn.setAttribute('onClick', 'mapg.make_guess_handheld();');
+        btn.innerHTML = submit_text;
+        var btnplc = document.getElementById('intro');
+        btnplc.appendChild(btn);
+        
+        // Put the button below the map too
+        var btn = document.createElement('button');
+        btn.setAttribute('id', 'bottom-submit');
+        btn.setAttribute('onClick', 'mapg.make_guess_handheld();');
+        btn.innerHTML = submit_text;
+        btnplc = document.getElementById('interface');
+        btnplc.appendChild(btn);
     },
     parent: this,
     in_dev: 0,
