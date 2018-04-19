@@ -181,7 +181,7 @@ var mapg = {
     {
         // Reload ads, analytics
         if ( typeof googletag !== 'undefined' ) googletag.pubads().refresh();
-        if ( typeof PARSELY !== 'undefined' ) PARSELY.beacon.trackPageView({ url: document.location.href, urlref: document.location.href, js: 1 });
+        if ( typeof PARSELY !== 'undefined' && typeof PARSELY.beacon !== 'undefined' ) PARSELY.beacon.trackPageView({ url: document.location.href, urlref: document.location.href, js: 1 });
 
         // Send a request to a remote server to log how far the guess was from the mark
         if ( this.config.log_guesses !== 0 )
@@ -286,17 +286,19 @@ var mapg = {
             if ( distance === 1 ) s = '';
             $('#result').text('Your guess landed ' + distance + ' mile' + s + ' from the target.');
         }
-        this.log_answer(distance, this.guess.latLng.lat(), this.guess.latLng.lng());
+        this.log_answer(distance, this.guess.lat(), this.guess.lng());
     },
     make_guess_handheld: function()
     {
-        var guess = mapg.map.getCenter();
-        var lat = guess.lat(), lon = guess.lng();
+        // The onClick function when the handheld button is pressed.
+        var center = mapg.map.getCenter();
+        var lat = center.lat(), lon = center.lng();
+
         // If the marker hasn't been moved we don't want to do anything:
         if ( this.config.markerlatlng.lat() == lat && this.config.markerlatlng.lng() == lon ) return false;
 
-        // The onClick function when the handheld button is pressed.
-        var ll = new google.maps.LatLng(guess.lat(), guess.lng());
+        // We need a LatLng object later on.
+        mapg.guess = new google.maps.LatLng(lat, lon);
         
         // Replace the crosshairs with a marker pin
         var el = document.getElementById('crosshairs');
@@ -308,7 +310,7 @@ var mapg = {
 
         var answer_marker = new google.maps.Marker(
         {
-            position: ll,
+            position: mapg.guess,
             map: mapg.map,
             title: 'Your Guess'
         });
@@ -322,7 +324,7 @@ var mapg = {
         //console.log(this.config, guess, this.config.markerlatlng.lat(), lat);
         
         // Keep people from guessing again.
-        this.guess = guess;
+        this.guess = guess.latLng;
         window.answer_marker.draggable = false;
         google.maps.event.clearListeners(window.answer_marker, 'mouseup');
 
@@ -362,7 +364,7 @@ var mapg = {
         {
             // Start on the boundary work.
             // this.find_distance handles the guess calculations.
-            var guess = { lat: lat, lon: lon }
+            //var guess = { lat: lat, lon: lon }
             var geoxml_config = {
                 map: this.map,
                 processStyles: true,
@@ -381,10 +383,10 @@ var mapg = {
         // See how close the guess was to the nearest point,
         // in case the guess was outside the boundary.
         shapes = obj[0].placemarks[0].Polygon;
-        console.log(obj, shapes);
+        //console.log(obj, shapes);
         var shapes_len = shapes.length;
         var best_guess = 0.0;
-        var in_bounds = google.maps.geometry.poly.containsLocation(window.mapg.guess.latLng, obj[0].gpolygons[0]);
+        var in_bounds = google.maps.geometry.poly.containsLocation(mapg.guess, obj[0].gpolygons[0]);
         var guess_rounded = 0;
         if ( in_bounds === false )
         {
@@ -394,7 +396,7 @@ var mapg = {
                 var len = coords.length;
                 for ( var i = 0; i < len; i++ )
                 {
-                    var distance = window.mapg.great_circle(coords[i].lat, coords[i].lng, window.mapg.guess.latLng.lat(), window.mapg.guess.latLng.lng());
+                    var distance = mapg.great_circle(coords[i].lat, coords[i].lng, mapg.guess.lat(), mapg.guess.lng());
                     if ( best_guess === 0.0 ) best_guess = distance;
                     else if ( distance < best_guess ) best_guess = distance;
                 }
