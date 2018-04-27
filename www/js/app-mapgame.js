@@ -237,11 +237,11 @@ var mapg = {
                     if ( data.worse_than == 0 )
                     {
                         if ( better_than == 1 ) esses = "";
-                        $('#result').append('<br><br>Your guess was closer than ' + better_than + ' other guess' + esses + '. That means you did better than ' + percent_better + ' percent of the people who played this, and tied the other ' + percent_right + 'percent.');
+                        $('#result').append('<br><br>Your guess was closer than ' + better_than + ' other guess' + esses + '. That means you did better than ' + percent_better + ' percent of the people who played this, and tied the other ' + percent_right + ' percent.');
                     }
                     else
                     {
-                        $('#result').append('<br><br>Your guess was further away than ' + data.worse_than + ' other guess' + esses + '. That means you did worse than ' + percent_further + 'percent of the people who played this.');
+                        $('#result').append('<br><br>Your guess was further away than ' + data.worse_than + ' other guess' + esses + '. That means you did worse than ' + percent_further + ' percent of the people who played this.');
                     }
                     var tweet_text = 'I did better than ' + percent_better + ' percent of the people who played this ' + mapg.config.target_name + ' map quiz:';
                     $('#result').append(mapg.build_tweet('Tweet this', tweet_text) + '.');
