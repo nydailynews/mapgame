@@ -127,10 +127,11 @@ var mapg = {
         zoom: 8,
         center: new google.maps.LatLng(0, 0),
         disableDefaultUI: false,
-        //mapTypeId: google.maps.MapTypeId.SATELLITE,
+        mapTypeId: google.maps.MapTypeId.SATELLITE,
         mapTypeId: google.maps.MapTypeId.TERRAIN,
         disableDoubleClickZoom: true,
         draggable: true,
+        streetViewControl: false,
         scrollwheel: false,
         styles: [
           {
