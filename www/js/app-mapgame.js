@@ -1,5 +1,5 @@
 var mapg = {
-    init: function ()
+    init: function()
     {
         // Config handling. External config objects must be named mapg_config
         if ( typeof window.mapg_config !== 'undefined' )
@@ -24,7 +24,7 @@ var mapg = {
                 title: 'Your Guess'
             });
 
-            google.maps.event.addListener(window.answer_marker, 'mouseup', function (guess) { window.mapg.make_guess_desktop(guess); });
+            google.maps.event.addListener(window.answer_marker, 'mouseup', function(guess) { window.mapg.make_guess_desktop(guess); });
         }
 
         // If we start with a loaded boundary, load it
@@ -90,12 +90,13 @@ var mapg = {
         border_file: '',
         unit: 'miles', // miles or km
         zoom: 6,
+        answer_fuzz: 0, // Number of miles the guess can be off by and still count as correct
         radius: 0,
         target: new google.maps.LatLng(27.175015 , 78.042155),
         centerlatlng: new google.maps.LatLng(0, 0),
         markerlatlng: 0
     },
-    update_config: function (config) {
+    update_config: function(config) {
         // Take an external config object and update this config object.
         for ( var key in config )
         {
@@ -173,7 +174,7 @@ var mapg = {
             .replace(/[^-a-zA-Z0-9\s]+/ig, '')
             .replace(/\s/gi, "-");
     },
-    build_slug: function ()
+    build_slug: function()
     {
         // Put together the slug of a map -- a name we can refer to.
         //return this.slugify(this.config.target_name) + '_' + this.config.unit;
@@ -187,7 +188,7 @@ var mapg = {
         var url = document.location.href;
         return ' <a target="_blank" href="https://twitter.com/intent/tweet?text=' + tt + '&url=' + url + '&via=NYDNi&related=nydailynews,NYDNi">' + link_text + '</a>';
     },
-    log_answer: function (distance, lat, lon)
+    log_answer: function(distance, lat, lon)
     {
         // Reload ads, analytics
         if ( typeof googletag !== 'undefined' ) googletag.pubads().refresh();
@@ -253,7 +254,7 @@ var mapg = {
                     }
                     else if ( distance == 0 && data.correct < 11 )
                     {
-                        $('#result').append(' <span style="color:red; clear: both;">You\'re the ' + to_ordinal(data.correct) + ' to get this right! Right on!</span>');
+                        $('#result').append(' <span style="color:red; clear: both;">You\'re the ' + utils.to_ordinal(data.correct) + ' to get this right! Right on!</span>');
                     }
                 }
                 })
@@ -268,7 +269,7 @@ var mapg = {
             window.parent.postMessage({distance: distance}, '*');
         }
     },
-    great_circle: function (lat1, lon1, lat2, lon2)
+    great_circle: function(lat1, lon1, lat2, lon2)
     {
         // Calculate the distance between two sets of lat/longs.
         // Cribbed from http://stackoverflow.com/questions/5260423/torad-javascript-function-throwing-error/7179026#7179026
@@ -283,18 +284,20 @@ var mapg = {
         return d;
     },
     guess: {},
-    show_answer: function (distance)
+    show_answer: function(distance)
     {
-        // Show the answer.
-        if ( distance == 0 )
+        // Given an integer of how many miles / km the guess was from the target,
+		// show the result and then log the answer.
+		var r = document.getElementById('result');
+        if ( distance == 0 || +distance < this.config.answer_fuzz )
         {
-            $('#result').text('You got it right! Congratulations!');
+            r.textContent = 'You got it right! Congratulations!';
         }
         else
         {
             var s = 's';
-            if ( distance === 1 ) s = '';
-            $('#result').text('Your guess landed ' + distance + ' mile' + s + ' from the target.');
+            if ( distance === 1 || this.config.unit === 'km' ) s = '';
+            r.textContent = 'Your guess landed ' + distance + this.config.unit + s + ' from the target.';
         }
         this.log_answer(distance, this.guess.lat(), this.guess.lng());
     },
@@ -346,7 +349,7 @@ var mapg = {
 
         this.make_guess(lat, lon);
     },
-    make_guess: function (lat, lon)
+    make_guess: function(lat, lon)
     {
         // Check how far the click was from the target.
         // There are two types of target checks: Lat-Long, used for small cities or foreign cities
@@ -436,18 +439,127 @@ var mapg = {
     create_marker: function create_marker(obj) { kml_parser.createMarker(obj); }
 };
 
-Math.radians = function (degrees)
+Math.radians = function(degrees)
 {
     return degrees * (Math.PI / 180);
 }
 
 
-$(document).ready( function () { mapg.init(); });
+$(document).ready( function() { mapg.init(); });
 
-var to_ordinal = function(n)
-{
-    // From https://gist.github.com/jlbruno/1535691
-   var s=["th","st","nd","rd"],
-       v=n%100;
-   return n+(s[(v-20)%10]||s[v]||s[0]);
-};
+var utils = {
+    ap_numerals: ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten'],
+    months: ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december'],
+    ap_months: ['Jan.', 'Feb.', 'March', 'April', 'May', 'June', 'July', 'Aug.', 'Sept.', 'Oct.', 'Nov.', 'Dec.'],
+    ap_date: function(date) {
+        // Given a date such as "2018-02-03" return an AP style date.
+        var this_year = new Date().getFullYear();
+        var parts = date.split('-')
+        var day = +parts[2];
+        var month = this.ap_months[+parts[1] - 1];
+        if ( this_year == +parts[0] ) return month + ' ' + day;
+        return month + ' ' + day + ', ' + parts[0];
+    },
+	to_ordinal: function(n) {
+		// From https://gist.github.com/jlbruno/1535691
+	   var s=["th","st","nd","rd"],
+		   v=n%100;
+	   return n+(s[(v-20)%10]||s[v]||s[0]);
+	},
+    rando: function() {
+        var text = "";
+        var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        for ( var i=0; i < 8; i++ )
+            text += possible.charAt(Math.floor(Math.random() * possible.length));
+        return text;
+    },
+    rando_by_day: function(max) {
+        // Generate a semi-random integer from zero to the max argument,
+        // based on what the date is.
+        var d = new Date().getDate();
+        return d % +max;
+    },
+    get_rando_by_day: function(arr) {
+        // Given an array, return a random item from it based on today's date.
+        var l = arr.length;
+        var index = this.rando_by_day(l);
+        return arr[index];
+    },
+    add_zero: function(i) {
+        // For values less than 10, return a zero-prefixed version of that value.
+        if ( +i < 10 ) return "0" + i;
+        return i;
+    },
+    add_zeros: function(i, digits) {
+        // Fill decimals with zeros to the number of digits. Returns a string.
+        var str = '' + +i;
+        var len = str.length - 2;   // The "2" is the "0." in the string.
+
+        while ( len <= digits ) {
+            str = str + '0';
+            len = str.length - 2;
+        }
+        // Axe the leading zero, if there is one
+        str = str.replace('0.', '.');
+        return str;
+    },
+    parse_date_str: function(date) {
+        // date is a datetime-looking string such as "2017-07-25"
+        // Returns a date object.
+        if ( typeof date !== 'string' ) return Date.now();
+
+        var date_bits = date.split(' ')[0].split('-');
+
+        // We do that "+date_bits[1] - 1" because months are zero-indexed.
+        var d = new Date(date_bits[0], +date_bits[1] - 1, date_bits[2], 0, 0, 0);
+        return d;
+    },
+    parse_date: function(date) {
+        // date is a datetime-looking string such as "2017-07-25"
+        // Returns a unixtime integer.
+        var d = this.parse_date_str(date);
+        return d.getTime();
+    },
+    days_between: function(from, to) {
+        // Get the number of days between two dates. Returns an integer. If to is left blank, defaults to today.
+        // Both from and to should be strings 'YYYY-MM-DD'.
+        // Cribbed from https://stackoverflow.com/questions/542938/how-do-i-get-the-number-of-days-between-two-dates-in-javascript
+        if ( to == null ) to = new Date();
+        else to = this.parse_date_str(to);
+        from = this.parse_date_str(from);
+        var days_diff = Math.floor((from-to)/(1000*60*60*24));
+        return days_diff;
+    },
+    get_json: function(path, obj, callback) {
+        // Downloads local json and returns it.
+        // Cribbed from http://youmightnotneedjquery.com/
+        var request = new XMLHttpRequest();
+        request.open('GET', path, true);
+
+        request.onload = function() {
+            if ( request.status >= 200 && request.status < 400 ) {
+                obj.data = JSON.parse(request.responseText);
+                callback();
+            }
+            else {
+                console.error('DID NOT LOAD ' + path + request);
+                return false;
+            }
+        };
+        request.onerror = function() {};
+        request.send();
+    },
+    add_class: function(el, class_name) {
+        // From http://youmightnotneedjquery.com/#add_class
+        if ( el.classlist ) el.classList.add(class_name);
+        else el.className += ' ' + class_name;
+        return el;
+    },
+    add_js: function(src, callback) {
+        var s = document.createElement('script');
+        if ( typeof callback === 'function' ) s.onload = function() { callback(); }
+        //else console.log("Callback function", callback, " is not a function");
+        s.setAttribute('src', src);
+        document.getElementsByTagName('head')[0].appendChild(s);
+    },
+}
