@@ -285,16 +285,18 @@ var mapg = {
     guess: {},
     show_answer: function(distance)
     {
-        // Show the answer.
-        if ( distance == 0 )
+        // Given an integer of how many miles / km the guess was from the target,
+		// show the result and then log the answer.
+		var r = document.getElementById('result');
+        if ( distance == 0 || +distance < this.config.answer_fuzz )
         {
-            $('#result').text('You got it right! Congratulations!');
+            r.textContent = 'You got it right! Congratulations!';
         }
         else
         {
             var s = 's';
-            if ( distance === 1 ) s = '';
-            $('#result').text('Your guess landed ' + distance + ' mile' + s + ' from the target.');
+            if ( distance === 1 || this.config.unit === 'km' ) s = '';
+            r.textContent = 'Your guess landed ' + distance + this.config.unit + s + ' from the target.';
         }
         this.log_answer(distance, this.guess.lat(), this.guess.lng());
     },
