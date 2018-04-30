@@ -1,5 +1,5 @@
 var mapg = {
-    init: function ()
+    init: function()
     {
         // Config handling. External config objects must be named mapg_config
         if ( typeof window.mapg_config !== 'undefined' )
@@ -24,7 +24,7 @@ var mapg = {
                 title: 'Your Guess'
             });
 
-            google.maps.event.addListener(window.answer_marker, 'mouseup', function (guess) { window.mapg.make_guess_desktop(guess); });
+            google.maps.event.addListener(window.answer_marker, 'mouseup', function(guess) { window.mapg.make_guess_desktop(guess); });
         }
 
         // If we start with a loaded boundary, load it
@@ -90,12 +90,13 @@ var mapg = {
         border_file: '',
         unit: 'miles', // miles or km
         zoom: 6,
+        answer_fuzz: 0, // Number of miles the guess can be off by and still count as correct
         radius: 0,
         target: new google.maps.LatLng(27.175015 , 78.042155),
         centerlatlng: new google.maps.LatLng(0, 0),
         markerlatlng: 0
     },
-    update_config: function (config) {
+    update_config: function(config) {
         // Take an external config object and update this config object.
         for ( var key in config )
         {
@@ -172,7 +173,7 @@ var mapg = {
             .replace(/[^-a-zA-Z0-9\s]+/ig, '')
             .replace(/\s/gi, "-");
     },
-    build_slug: function ()
+    build_slug: function()
     {
         // Put together the slug of a map -- a name we can refer to.
         //return this.slugify(this.config.target_name) + '_' + this.config.unit;
@@ -186,7 +187,7 @@ var mapg = {
         var url = document.location.href;
         return ' <a target="_blank" href="https://twitter.com/intent/tweet?text=' + tt + '&url=' + url + '&via=NYDNi&related=nydailynews,NYDNi">' + link_text + '</a>';
     },
-    log_answer: function (distance, lat, lon)
+    log_answer: function(distance, lat, lon)
     {
         // Reload ads, analytics
         if ( typeof googletag !== 'undefined' ) googletag.pubads().refresh();
@@ -267,7 +268,7 @@ var mapg = {
             window.parent.postMessage({distance: distance}, '*');
         }
     },
-    great_circle: function (lat1, lon1, lat2, lon2)
+    great_circle: function(lat1, lon1, lat2, lon2)
     {
         // Calculate the distance between two sets of lat/longs.
         // Cribbed from http://stackoverflow.com/questions/5260423/torad-javascript-function-throwing-error/7179026#7179026
@@ -282,7 +283,7 @@ var mapg = {
         return d;
     },
     guess: {},
-    show_answer: function (distance)
+    show_answer: function(distance)
     {
         // Show the answer.
         if ( distance == 0 )
@@ -345,7 +346,7 @@ var mapg = {
 
         this.make_guess(lat, lon);
     },
-    make_guess: function (lat, lon)
+    make_guess: function(lat, lon)
     {
         // Check how far the click was from the target.
         // There are two types of target checks: Lat-Long, used for small cities or foreign cities
@@ -435,13 +436,13 @@ var mapg = {
     create_marker: function create_marker(obj) { kml_parser.createMarker(obj); }
 };
 
-Math.radians = function (degrees)
+Math.radians = function(degrees)
 {
     return degrees * (Math.PI / 180);
 }
 
 
-$(document).ready( function () { mapg.init(); });
+$(document).ready( function() { mapg.init(); });
 
 var utils = {
     ap_numerals: ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten'],
