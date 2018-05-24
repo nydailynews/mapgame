@@ -124,6 +124,9 @@
 		</div>
 		<section id="intro">
 			<p>
+                Oh, North Korea.
+            </p>
+			<p>
                 At the start of 2018 it was the battle of words, when President Donald Trump taunted North Korean Supreme Leader (yes that’s his title) Kim Jong Un about the size of his “nuclear button.”
                 Then there were the Winter Olympics in <a href="../south-korea/">South Korea</a>,
                 then there was talk about a meeting between Trump and Kim, then there was a place and a date for that meeting (June 12, 2018, Singapore),
@@ -131,17 +134,18 @@
             </p>
 
 			<p>
-                Have you visited the Democratic People’s Republic of Korea, known as <a href="http://www.nydailynews.com/tags/north-korea">North Korea</a> in , describes itself as a self-reliant, socialist state.
+                The Democratic People’s Republic of Korea, aka <a href="http://www.nydailynews.com/tags/north-korea">North Korea</a>, describes itself as a self-reliant, socialist state.
+
                 When the nation invaded South Korea in 1950 it sparked the Korean War.
-                It is widely viewed as a rogue state and, for at least 40 years, the United States has tried to control North Korea by issuing threats, conducting military exercises, ratcheting up diplomatic sanctions, and leaning on China.
             </p>
 
 			<p>
+                North Korea is widely viewed as a rogue state and, for more than 40 years, has engaged in a pseudo-militaristic dance with the United States.
                 In 2017, the news was about the steady advances the capital city of Pyongyang made in being able to hit the U.S. with a nuclear weapon.
                 “It won’t happen,” Trump tweeted.
             </p>
 
-			<p>Do people know where North Korea actually is? <strong>Let's&nbsp;find&nbsp;out.</strong></p>
+            <p><strong>Our question here is:</strong> Do people know where North Korea actually is? <strong>Let's&nbsp;find&nbsp;out.</strong></p>
 
 			<p><span id="first-action">Click and drag the map marker to</span> where you think North Korea is on this map of East Asia. When you <span id="final-action">drop it</span>, the answer will appear and you’ll see how your guess compares with everyone else who has played so far.</p>
 
@@ -178,9 +182,9 @@ $(document).ready( function () {
 		target_type: 'boundary',
 		boundary_file: '/quiz/map-quiz/kml/asia/country/north-korea.kml',
 		unit: 'miles', // miles or km
-		zoom: is_mobile ? 3 : 5,
-		centerlatlng: new google.maps.LatLng(41,130),
-		markerlatlng: new google.maps.LatLng(38,133),
+		zoom: is_mobile ? 3 : 3,
+        centerlatlng: new google.maps.LatLng(30,127),
+        markerlatlng: new google.maps.LatLng(23,146),
 		styles: [
   {
 	"elementType": "labels",
