@@ -295,9 +295,11 @@ var mapg = {
         }
         else
         {
+            var unit = this.config.unit;
             var s = 's';
             if ( distance === 1 || this.config.unit === 'km' ) s = '';
-            r.textContent = 'Your guess landed ' + distance + this.config.unit + s + ' from the target.';
+            if ( this.config.unit == 'miles' && s == '' ) unit = 'mile';
+            r.textContent = 'Your guess landed ' + distance + ' ' + unit + ' from the target.';
         }
         this.log_answer(distance, this.guess.lat(), this.guess.lng());
     },
