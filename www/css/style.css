@@ -38,7 +38,6 @@ p.bottom {
 #call-to-action {
     text-transform: uppercase;
     font-weight: bold;
-    line-height: 16px;
 }
 
 article ol, article dl {
@@ -100,11 +99,56 @@ p.byline {
     margin-bottom: 30px;
 }
 
+/* HANDHELD */
 
-@media only screen and (max-width: 900px) {
-    h1, section#intro {
-        margin: 0 17px;
+@media only screen and (min-width: 250px) and (max-width: 727px) {
+    article h1 {
+        margin: 30px 15px;
+        line-height: 45px;
+        font-size: 40px;
     }
+
+    section#intro {
+        margin: auto 15px;
+    }
+
+    #interface {
+        margin-bottom: -500px;
+    }
+    #interface.after-guess {
+        margin-bottom: 0;
+    }
+
+    #map-canvas {
+        margin-bottom: 0;
+    }
+
+    #crosshairs {
+        position: relative;
+        top: -500px;
+        /* We subtract 25px here because the image width is 50px, so, for the image to be in the center here it has to be offset half its width. */
+        left: calc(50vw - 25px);
+    }
+
+    #bottom-submit, #submit-button {
+        width: 100%;
+        border: 1px solid black;
+        background-color: #ACDBFD;
+        margin-bottom: 25px;
+        padding: 5px 10px;
+        font: bold 24px 'Open Sans Condensed', sans-serif;
+        text-transform: uppercase;
+    }
+    #bottom-submit {
+        top: -500px;
+        position: relative;
+    }
+}
+
+/* TABLET */
+
+@media only screen and (min-width: 728px) and (max-width: 1100px) {
+
 }
 
 /* SHARE ICON CSS */
@@ -112,10 +156,11 @@ a {
     text-decoration: none;
     color: #2569D3;
 }
-#ra-share-top {
+#ra-share-top.ra-share {
     width: 100%;
     text-align: center;
-    margin: 10px auto;
+    margin: auto;
+    margin-bottom: 0;
 }
 .ra-share, .rt-share {
     position: relative;
