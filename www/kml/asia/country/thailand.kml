@@ -8,9 +8,8 @@
       <color>ff0000ff</color>
     </LineStyle>
   </Style>
-<MultiGeometry><Point>
-<coordinates>101.00644542351449,15.134164113668835</coordinates>
-</Point><Polygon><outerBoundaryIs><LinearRing>
+<MultiGeometry>
+<Polygon><outerBoundaryIs><LinearRing>
 <coordinates>99.66309533,6.5219278 99.6440784,6.51614004 99.60666467,6.59680695 99.65400028,6.71411245 99.70133589,6.57055532 99.66309533,6.5219278</coordinates>
 </LinearRing></outerBoundaryIs></Polygon><Polygon><outerBoundaryIs><LinearRing>
 <coordinates>99.07842818,7.59183666 99.10436974,7.47127554 99.06788618,7.49587352 99.03770715,7.54848013 99.03812056,7.6257364 99.04514855,7.63653677 99.07842818,7.59183666</coordinates>
