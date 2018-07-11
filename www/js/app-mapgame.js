@@ -131,6 +131,7 @@ var mapg = {
         disableDefaultUI: false,
         mapTypeId: google.maps.MapTypeId.SATELLITE,
         mapTypeId: google.maps.MapTypeId.TERRAIN,
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
         disableDoubleClickZoom: true,
         draggable: true,
         streetViewControl: false,
