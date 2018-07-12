@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
-    <title>Map quiz: Can you find LOCATION on a map? - New York Daily News</title>
+    <title>Map quiz: Can you place LOCATION on a map? - New York Daily News</title>
     <link rel="icon" type="image/png" href="//interactive.nydailynews.com/favicons.png">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -12,13 +12,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
 
     <!-- Titles -->
-    <meta property="og:title" content='Map quiz: Can you find LOCATION on a map?' />
-    <meta name="twitter:title" content='Map quiz: Can you find LOCATION on a map?' />
+    <meta property="og:title" content='Map quiz: Can you place LOCATION on a map?' />
+    <meta name="twitter:title" content='Map quiz: Can you place LOCATION on a map?' />
 
     <!-- Descriptions -->
-    <meta name="description" content="Given a map of MAPOF, can you locate LOCATION? Play the New York Daily News map quiz and see how your results compare with everyone else." />
-    <meta property="og:description" content="Given a map of MAPOF, can you locate LOCATION? Play the New York Daily News map quiz and see how your results compare with everyone else." />
-    <meta name="twitter:description" content="Given a map of MAPOF, can you locate LOCATION? Play the New York Daily News map quiz and see how your results compare with everyone else." />
+    <meta name="description" content="Given a map of MAPOF, can you locate LOCATION? Play the map quiz and see how your results compare with everyone else." />
+    <meta property="og:description" content="Given a map of MAPOF, can you locate LOCATION? Play the map quiz and see how your results compare with everyone else." />
+    <meta name="twitter:description" content="Given a map of MAPOF, can you locate LOCATION? Play the map quiz and see how your results compare with everyone else." />
 
     <!-- KEYWORD -->
     <meta name="keywords" content="LOCATION,Where is LOCATION,LOCATION map" />
@@ -31,7 +31,7 @@
     <!-- THUMBNAIL IMAGE-->
     <meta property="og:image" content="http://interactive.nydailynews.com/quiz/map-quiz/SLUG/img/share.jpg" />
     <meta name="twitter:image" content="http://interactive.nydailynews.com/quiz/map-quiz/SLUG/img/share.jpg" />
-    <meta name="twitter:image:alt" content="An animated gif of an rolling globe with the words where is LOCATION" />
+    <meta name="twitter:image:alt" content="An animated gif of an rolling globe with the words “Where is LOCATION” on top" />
     <meta property="og:image:width" content="1024" />
     <meta property="og:image:height" content="512" />
 
@@ -40,7 +40,7 @@
         {
             "@context": "http://schema.org",
             "@type": "NewsArticle",
-            "headline": "Map quiz: Can you find LOCATION on a map?",
+            "headline": "Map quiz: Can you place LOCATION on a map?",
             "url": "http://interactive.nydailynews.com/quiz/map-quiz/SLUG/",
             "thumbnailUrl": "http://interactive.nydailynews.com/quiz/map-quiz/SLUG/img/share.gif",
             "dateCreated": "2018-09-27T06:00:00Z",
@@ -67,8 +67,6 @@
     <meta name="localeCountry" content="US"/>
     <meta name="localeLanguage" content="en" />
 
-    <!-- ADOBE ANALYTICS -->
-    <script src="//assets.adobedtm.com/4fc527d6fda921c80e462d11a29deae2e4cf7514/satelliteLib-c91fdc6ac624c6cbcd50250f79786de339793801.js"></script>
     <link rel="stylesheet" href="//interactive.nydailynews.com/nydn/c/rh.css">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700|PT+Serif:400,400i,700">
@@ -84,7 +82,7 @@
             "targetPath": document.location.pathname
         };
         var nydnDO = [ { 
-            'title':'xxxMap quiz: Can you find LOCATION on a map?xxx', 
+            'title':'xxxMap quiz: Can you place LOCATION on a map?xxx', 
             'link':'http://interactive.nydailynews.com/quiz/map-quiz/SLUG/', 
             'p_type':'interactive', 
             'section':'interactive' 
@@ -112,12 +110,12 @@
 <!-- CONTENT-START -->
 <main>
     <article>
-        <h1><span>Map quiz:</span> Can you find LOCATION on a map of MAPOF?</h1>
+        <h1><span>Map quiz:</span> Can you place LOCATION on a map of MAPOF?</h1>
         <div>
             <ul class="ra-share" id="ra-share-top">
                 <li class="rt-share-f"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://interactive.nydailynews.com/quiz/map-quiz/SLUG/">facebook</a></li>
-                <li class="ra-share-t"> <a target="_blank" href="https://twitter.com/intent/tweet?text=Map quiz: Can you find LOCATION on a map of MAPOF?&amp;url=http://interactive.nydailynews.com/quiz/map-quiz/SLUG/&amp;via=NYDNi&amp;related=NYDailyNews">Tweet</a></li>
-                <li class="ra-share-e"> <a href="mailto:?subject=Can you find LOCATION on a map?&amp;body=Can you find the country on a map? http://interactive.nydailynews.com/quiz/map-quiz/SLUG/">email</a> </li>
+                <li class="ra-share-t"> <a target="_blank" href="https://twitter.com/intent/tweet?text=Map quiz: Can you place LOCATION on a map of MAPOF?&amp;url=http://interactive.nydailynews.com/quiz/map-quiz/SLUG/&amp;via=NYDNi&amp;related=NYDailyNews,NYDNi">Tweet</a></li>
+                <li class="ra-share-e"> <a href="mailto:?subject=Can you place LOCATION on a map?&amp;body=Can you find LOCATION on a map? http://interactive.nydailynews.com/quiz/map-quiz/SLUG/">email</a> </li>
             </ul>
         </div>
         <section id="intro">
@@ -162,8 +160,8 @@ $(document).ready( function () {
         boundary_file: '/quiz/map-quiz/kml/PATH/TO/SLUG.kml',
         unit: 'miles', // miles or km
         zoom: 5,
-        centerlatlng: new google.maps.LatLng(23,-73),
-        markerlatlng: new google.maps.LatLng(28,-74),
+        centerlatlng: new google.maps.LatLng(23,-73), // UPDATE 
+        markerlatlng: new google.maps.LatLng(28,-74), // UPDATE 
         styles: [
   {
     "elementType": "labels",
@@ -172,7 +170,7 @@ $(document).ready( function () {
   {
     "featureType": "administrative",
     "elementType": "geometry",
-    "stylers": [ { "visibility": "off" } ]
+    "stylers": [ { "visibility": "on" } ]
   },
   {
     "featureType": "administrative.land_parcel",
